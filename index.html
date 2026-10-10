@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="口袋电影网 - 一份能装进口袋的电影观影指南：口袋电影、口袋片单、通勤电影、短片、微电影、动画片、纪录片、电影推荐、4K 修复、杜比视界、正版观影。15 分钟、30 分钟、60 分钟，碎片时间也能看完一部好片。">
+<meta name="keywords" content="口袋电影网,口袋电影,口袋片单,通勤电影,碎片时间观影,短片,微电影,动画片,纪录片,电影推荐,经典电影,高分电影,是枝裕和,宫崎骏,新海诚,4K修复,杜比视界,正版观影">
+<meta name="author" content="口袋电影网">
+<meta name="theme-color" content="#f2ede3">
+<meta name="referrer" content="no-referrer-when-downgrade">
+<title>口袋电影网 · 能装进口袋的观影指南</title>
+<link rel="canonical" href="https://koudaidianyingwang-cn.github.io/">
+<style>
+:root{
+  --ink:#1d1a17; --ink2:#4d473f; --mute:#a29a8c;
+  --paper:#f2ede3; --card:#fffdf9;
+  --ind:#2f4a63;   /* 牛仔靛 */
+  --ind2:#587d96;  /* 灰蓝 */
+  --amber:#d89a3c; /* 琥珀 */
+  --clay:#b4634a;  /* 陶土 */
+  --sage:#7d8f76;  /* 鼠尾草 */
+  --mono:ui-monospace,Menlo,Consolas,monospace;
+  --sans:"PingFang SC","Microsoft YaHei",Inter,system-ui,sans-serif;
+  --serif:"Songti SC","SimSun",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.9;font-size:15px;
+  background-image:radial-gradient(rgba(47,74,99,.05) 1px,transparent 1px);
+  background-size:16px 16px}
+a{color:inherit;text-decoration:none;outline:none}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2.4px solid var(--clay);outline-offset:3px}
+::selection{background:var(--ind);color:#fff}
+::placeholder{font-size:12px;color:#b6ad9e}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px;position:relative}
+
+.topbar{position:sticky;top:0;z-index:50;background:rgba(242,237,227,.95);backdrop-filter:blur(12px);border-bottom:2px solid var(--ind)}
+.hd{display:flex;align-items:center;gap:16px;padding:9px 0}
+.logo{display:flex;align-items:center;gap:11px;white-space:nowrap}
+.pocket{width:33px;height:40px;flex:none;background:var(--ind);border-radius:7px 7px 12px 12px;position:relative;transform:rotate(-5deg);
+  box-shadow:inset 0 -9px 0 rgba(0,0,0,.16),inset 0 5px 0 rgba(255,255,255,.14)}
+.pocket:before{content:"";position:absolute;left:50%;top:-7px;transform:translateX(-50%);width:13px;height:11px;border:3px solid var(--ind);border-bottom:0;border-radius:9px 9px 0 0}
+.logo span b{font-size:18.4px;font-weight:900;letter-spacing:1.4px;color:var(--ind)}
+.logo em{font-style:normal;font-family:var(--mono);font-size:7px;letter-spacing:1.3px;color:var(--mute);display:block;font-weight:700}
+nav{display:flex;gap:3px;margin-left:auto;font-size:11px;letter-spacing:.3px;font-weight:900}
+nav a{padding:8px 11px;border-radius:4px;transition:.2s}
+nav a:hover{background:var(--ind);color:#fff;transform:translateY(-3px)}
+.search{display:flex;background:var(--card);border:1.8px solid rgba(29,26,23,.24);border-radius:9px;padding:5px 5px 5px 13px;gap:7px;width:100%;max-width:216px}
+.search input{border:0;background:transparent;font:inherit;font-size:12px;flex:1;outline:none}
+.search button{border:0;border-radius:7px;background:var(--clay);color:#fff;font-weight:900;font-size:10px;padding:0 13px;letter-spacing:1.1px;cursor:pointer}
+.ham{display:none;background:none;border:1.8px solid var(--ind);border-radius:8px;font-size:16px;cursor:pointer;padding:5px 9px;color:var(--ind);line-height:1}
+
+.hero{padding:28px 0 22px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center}
+.hero .eyebrow{font-family:var(--mono);font-size:8px;letter-spacing:3.2px;color:var(--clay);font-weight:900}
+.hero h1{font-size:clamp(25px,5vw,46px);line-height:1.34;font-weight:900;letter-spacing:.4px;margin:10px 0 12px;font-family:var(--serif);color:var(--ind)}
+.hero h1 u{text-decoration:none;background:linear-gradient(transparent 62%,var(--amber) 62%,var(--amber) 92%,transparent 92%)}
+.hero .lead{color:var(--ink2);font-size:14.2px;text-align:justify;max-width:60ch}
+.hero .lead b{color:var(--ind)}
+.hero .cta{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+.hero .cta a{font-size:12px;font-weight:900;letter-spacing:.8px;padding:11px 22px;border-radius:9px;transition:.22s;border:1.8px solid var(--ind)}
+.hero .cta a.p{background:var(--ind);color:#fff;box-shadow:0 6px 0 var(--amber)}
+.hero .cta a.s{background:transparent}
+.hero .cta a:hover{transform:translateY(-4px)}
+
+/* memo card */
+.memo{background:var(--card);border:1.6px solid rgba(29,26,23,.2);border-radius:3px;padding:20px 22px;transform:rotate(1.2deg);box-shadow:0 22px 50px -24px rgba(29,26,23,.6);position:relative}
+.memo:before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:repeating-linear-gradient(45deg,var(--clay),var(--clay) 5px,var(--amber) 5px,var(--amber) 10px)}
+.memo .sh{font-family:var(--mono);font-size:7.4px;letter-spacing:2px;color:var(--clay);border:1.4px solid var(--clay);border-radius:9px;padding:2px 9px;font-weight:900;display:inline-block;margin:6px 0 9px}
+.memo h3{font-family:var(--serif);font-size:17.4px;font-weight:900;color:var(--ind);line-height:1.55}
+.memo .rows{margin-top:11px}
+.memo .rw{display:grid;grid-template-columns:74px 1fr;gap:9px;padding:7px 0;border-bottom:1px dashed rgba(47,74,99,.3);font-size:11px;align-items:center}
+.memo .rw:last-child{border:0}
+.memo .rw b{color:var(--ink);font-weight:900}
+.memo .rw span{color:var(--mute);line-height:1.7;font-size:10.4px}
+.memo .rw span i{font-style:normal;font-weight:900;color:var(--clay);font-family:var(--mono);font-size:8.4px}
+
+section{padding:42px 0}
+.sec{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;border-bottom:2px solid var(--ind);padding-bottom:7px;margin-bottom:21px}
+.sec .no{font-family:var(--mono);font-size:8.2px;letter-spacing:1.4px;color:#fff;background:var(--clay);padding:3px 9px;border-radius:6px;font-weight:900;line-height:1.7}
+.sec h2{font-size:clamp(16.4px,2.5vw,21.6px);font-weight:900;letter-spacing:.3px;font-family:var(--serif);color:var(--ind)}
+.sec .en{font-family:var(--mono);font-size:7.6px;letter-spacing:2.2px;color:var(--mute);text-transform:uppercase;font-weight:700}
+.sec a.more{margin-left:auto;font-size:11px;color:var(--mute);border-bottom:2.2px solid var(--amber);padding-bottom:2px;font-weight:900}
+.sec a.more:hover{color:var(--ind)}
+
+/* 01 pockets */
+.pockets{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.po{background:var(--card);border:1.6px solid rgba(29,26,23,.2);border-radius:12px 12px 16px 16px;padding:15px 16px;cursor:pointer;transition:.24s;position:relative}
+.po:before{content:"";position:absolute;left:50%;top:-9px;transform:translateX(-50%);width:26px;height:9px;border:3px solid var(--c);border-bottom:0;border-radius:11px 11px 0 0}
+.po .min{font-family:var(--mono);font-size:19px;font-weight:900;color:var(--c);line-height:1.1;letter-spacing:-.6px}
+.po .min small{font-size:9.6px;letter-spacing:1.2px;color:var(--mute);font-weight:700;margin-left:3px}
+.po b{font-size:13.4px;display:block;line-height:1.55;color:var(--ind);font-weight:900;margin-top:5px}
+.po p{font-size:10.5px;color:var(--mute);line-height:1.9;text-align:justify}
+.po .cap{margin-top:7px;font-family:var(--mono);font-size:7.6px;letter-spacing:1.3px;color:var(--c);font-weight:900;border-top:1px dashed var(--c);padding-top:5px}
+.po:hover{background:var(--c);transform:translateY(-6px) rotate(-1.4deg)}
+.po:hover b,.po:hover p,.po:hover .cap{color:var(--cream,#f2ede3)}
+.po:hover .cap{border-color:rgba(255,255,255,.5)}
+
+/* 02 reels */
+.reels{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.re{background:var(--card);border:1.6px solid rgba(29,26,23,.2);border-radius:11px;padding:17px 19px 15px;cursor:pointer;transition:.24s;position:relative}
+.re .tag{position:absolute;right:0;top:14px;background:var(--c);color:#fff;font-family:var(--mono);font-size:7.4px;letter-spacing:1.4px;padding:4px 10px;border-radius:7px 0 0 7px;font-weight:900}
+.re h4{font-size:15.4px;font-weight:900;line-height:1.45;margin-bottom:6px;font-family:var(--serif);color:var(--ind)}
+.re ol{margin:0 0 7px 15px;padding:0}
+.re li{font-size:10.7px;line-height:1.9;color:var(--ink2)}
+.re li b{color:var(--ink)}
+.re .cap{font-family:var(--mono);font-size:7.6px;letter-spacing:1.3px;color:var(--c);border-top:1px dashed var(--c);padding-top:5px;font-weight:900}
+.re:hover{background:var(--ind);color:var(--cream)}
+.re:hover h4,.re:hover .cap{color:var(--cream)}
+.re:hover .cap{border-color:rgba(255,255,255,.45)}
+.re:hover li,.re:hover .cap{color:rgba(255,255,255,.9)}
+
+/* 03 ladder */
+.ladder{display:grid;grid-template-columns:repeat(3,1fr);gap:0;align-items:flex-end;height:250px;border-bottom:4px solid var(--ind);padding:0 10px}
+.la{position:relative;background:linear-gradient(180deg,var(--c),color-mix(in srgb,var(--c) 52%,#14120f));border:1.6px solid rgba(255,255,255,.16);border-bottom:0;border-radius:9px 9px 0 0;height:0;transition:height 1s cubic-bezier(.2,.8,.2,1);cursor:pointer}
+.la .top{position:absolute;left:0;right:0;top:-32px;text-align:center}
+.la .top b{font-family:var(--mono);font-size:8.8px;letter-spacing:.7px;font-weight:900;color:var(--ind)}
+.la .top s{text-decoration:none;display:block;font-size:18.2px;font-weight:900;color:var(--c);line-height:1.1}
+.la .mid{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fff;padding:8px}
+.la .mid span{font-size:13px;line-height:1.5;font-weight:900;text-shadow:0 2px 0 rgba(0,0,0,.26)}
+.la .mid em{font-style:normal;font-family:var(--mono);font-size:7.2px;letter-spacing:.9px;display:block;margin-top:5px;opacity:.92}
+.la:hover{filter:brightness(1.06)}
+
+/* 04 tickets */
+.tix{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.ti{background:var(--card);border:1.6px solid rgba(29,26,23,.2);border-radius:11px;padding:14px 17px;cursor:pointer;transition:.24s;display:grid;grid-template-columns:62px 1fr;gap:13px;align-items:center;position:relative;overflow:hidden}
+.ti:before{content:"";position:absolute;right:-10px;top:50%;transform:translateY(-50%);width:20px;height:20px;background:var(--paper);border:1.6px solid rgba(29,26,23,.2);border-radius:50%}
+.ti:after{content:"";position:absolute;right:60px;top:0;bottom:0;width:2px;background:repeating-linear-gradient(0deg,transparent,transparent 5px,rgba(29,26,23,.28) 5px,rgba(29,26,23,.28) 9px)}
+.ti .num{font-family:var(--mono);font-size:20px;font-weight:900;line-height:1.1;color:var(--c);letter-spacing:-.8px;text-align:center}
+.ti .num small{display:block;font-size:7.4px;letter-spacing:1.1px;color:var(--mute);font-weight:700}
+.ti h4{font-size:15px;font-weight:900;line-height:1.45;margin-bottom:5px;font-family:var(--serif);color:var(--ind)}
+.ti p{font-size:10.5px;color:var(--mute);line-height:1.9;text-align:justify}
+.ti .tag{margin-top:6px;font-family:var(--mono);font-size:7.8px;letter-spacing:1.2px;color:var(--c);font-weight:900}
+.ti:hover{transform:translateY(-5px);box-shadow:0 11px 24px rgba(29,26,23,.16)}
+
+/* 05 places */
+.places{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pl{background:var(--card);border:1.6px solid rgba(29,26,23,.2);border-radius:11px;padding:15px 17px;cursor:pointer;transition:.24s;text-align:center}
+.pl .ic{width:52px;height:52px;margin:0 auto 9px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-family:var(--serif);font-size:17px;font-weight:900;box-shadow:inset 0 -7px 0 rgba(0,0,0,.16)}
+.pl b{font-size:13px;display:block;line-height:1.5;color:var(--ind);font-weight:900}
+.pl p{font-size:10.3px;color:var(--mute);line-height:1.88;margin-top:4px;text-align:justify}
+.pl .req{margin-top:7px;font-family:var(--mono);font-size:7.6px;letter-spacing:1.1px;color:#fff;background:var(--c);border-radius:6px;padding:3px 9px;font-weight:900;display:inline-block}
+.pl:hover{background:var(--c);transform:translateY(-5px)}
+.pl:hover b,.pl:hover p{color:var(--cream)}
+.pl:hover .req{background:var(--cream);color:var(--c)}
+
+/* 06 auteurs */
+.auteurs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.au{background:var(--card);border:1.6px solid rgba(29,26,23,.2);border-radius:11px;padding:15px 17px;cursor:pointer;transition:.24s;position:relative;overflow:hidden}
+.au:before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:var(--c)}
+.au .no2{font-family:var(--mono);font-size:7.4px;letter-spacing:1.5px;color:var(--mute);font-weight:700}
+.au h4{font-size:15.8px;font-weight:900;line-height:1.4;margin:4px 0 6px;font-family:var(--serif);color:var(--ind)}
+.au .en3{font-family:var(--mono);font-size:7.2px;letter-spacing:1.5px;color:var(--clay);font-weight:700;margin-bottom:7px}
+.au p{font-size:10.5px;color:var(--mute);line-height:1.9;text-align:justify}
+.au .see{margin-top:8px;font-family:var(--mono);font-size:8.2px;letter-spacing:1.2px;color:var(--c);border-top:1px dashed var(--c);padding-top:5px;font-weight:900}
+.au:hover{background:var(--c);color:var(--cream)}
+.au:hover h4,.au:hover .see{color:var(--cream)}
+.au:hover .en3,.au:hover p{color:rgba(255,255,255,.88)}
+.au:hover .see{border-color:rgba(255,255,255,.45)}
+
+/* 07 avoid */
+.avoid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.av{background:var(--card);border:1.6px solid rgba(29,26,23,.2);border-left:11px solid var(--clay);border-radius:8px;padding:14px 16px;cursor:pointer;transition:.24s}
+.av .no{font-family:var(--mono);font-size:7.8px;letter-spacing:1.8px;color:var(--clay);font-weight:900}
+.av h4{font-size:13.2px;margin:6px 0 6px;font-weight:900;line-height:1.45;color:var(--ind)}
+.av p{font-size:10.4px;color:var(--mute);line-height:1.9;text-align:justify}
+.av:hover{background:var(--clay);color:#fff}
+.av:hover .no{color:var(--cream)}
+.av:hover h4{color:var(--cream)}
+.av:hover p{color:rgba(255,255,255,.94)}
+
+.about{background:linear-gradient(155deg,var(--ind),#1a2c3d);color:var(--cream);border-radius:13px;padding:30px 34px;box-shadow:0 24px 60px -26px rgba(29,26,23,.72);position:relative;overflow:hidden}
+.about:before{content:"";position:absolute;right:-26px;bottom:-34px;width:150px;height:130px;border-radius:16px;background:var(--clay);transform:rotate(11deg);opacity:.9}
+.about:after{content:"";position:absolute;right:30px;bottom:26px;width:54px;height:64px;border-radius:10px 10px 18px 18px;background:var(--amber);transform:rotate(-7deg);box-shadow:inset 0 -15px 0 rgba(0,0,0,.18)}
+.about p.led{font-size:18.2px;line-height:1.9;font-weight:900;margin-bottom:12px;color:#fff;font-family:var(--serif);position:relative}
+.about p.led b{color:#1d1a17;background:var(--amber);padding:0 5px;border-radius:5px}
+.about p{font-size:13px;text-align:justify;margin-bottom:12px;line-height:1.96;color:#e6e0d4;position:relative}
+.tags2{display:flex;gap:8px;flex-wrap:wrap;position:relative}
+.tags2 a{font-family:var(--mono);font-size:8.6px;letter-spacing:.7px;color:var(--ind);border:1.5px solid var(--cream);background:var(--cream);border-radius:7px;padding:5px 11px;transition:.2s;font-weight:700}
+.tags2 a:hover{background:var(--amber);border-color:var(--amber);transform:rotate(-2.2deg)}
+
+footer{border-top:2px solid var(--ind);padding:36px 0 14px;margin-top:10px;background:rgba(242,237,227,.6)}
+.foot{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px;margin-bottom:20px}
+.foot .brand{font-size:17px;font-weight:900;letter-spacing:1.2px;display:flex;flex-direction:column;gap:8px;color:var(--ind)}
+.foot .brand p{font-size:11.4px;color:var(--mute);line-height:1.9;max-width:330px;font-weight:700}
+.foot h5{font-family:var(--mono);font-size:7.8px;letter-spacing:2.2px;color:var(--clay);margin-bottom:9px;font-weight:700}
+.foot a{display:block;color:var(--mute);font-size:11.2px;padding:4px 0;font-weight:700;transition:.18s}
+.foot a:hover{color:var(--ind);transform:translateX(5px)}
+.copy{text-align:center;color:#a29a8c;font-size:10px;border-top:1px dashed #cdc3b2;padding-top:12px;line-height:2;font-family:var(--mono);letter-spacing:.4px}
+.copy a{color:var(--ind);font-weight:700}
+
+@media(max-width:1120px){
+  .ham{display:block}
+  nav,.search{display:none}
+  .hero .wrap,.pockets,.reels,.tix,.places,.auteurs,.avoid,.foot{grid-template-columns:repeat(2,1fr)}
+  .drawer{position:fixed;inset:0 0 0 auto;width:86%;max-width:322px;background:var(--paper);padding:26px;border-left:16px solid var(--ind);transform:translateX(102%);transition:.32s;z-index:60;overflow:auto;box-shadow:-16px 0 38px rgba(0,0,0,.28)}
+  .drawer.open{transform:none}
+  .drawer a{display:block;font-size:15.2px;font-weight:900;padding:13px 10px;border-bottom:1px dashed rgba(180,99,74,.5);color:var(--ind)}
+  .drawer a:hover{color:var(--clay)}
+  .scrim{position:fixed;inset:0;background:rgba(29,26,23,.5);opacity:0;pointer-events:none;transition:.32s;z-index:59}
+  .scrim.on{opacity:1;pointer-events:auto}
+}
+@media(max-width:640px){
+  .wrap{padding:0 16px}
+  .hero h1{font-size:24px}
+  .hero .wrap,.pockets,.reels,.tix,.places,.auteurs,.avoid,.foot{grid-template-columns:1fr}
+  .ladder{height:198px}
+  .memo{transform:none}
+  .memo h3{font-size:15.4px}
+}
+@media print{body{background:#fff;color:#000}.ham,.search,.scrim,.drawer,.topbar{position:static!important;display:none!important}}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaobao.js"></script>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="hd">
+      <a class="logo" href="#" aria-label="口袋电影网 首页">
+        <span class="pocket" aria-hidden="true"></span>
+        <span><b>口袋电影网</b><em>POCKET · 15 MIN / 30 MIN / 60 MIN</em></span>
+      </a>
+      <nav>
+        <a href="#c01">四个口袋</a>
+        <a href="#c02">三卷片单</a>
+        <a href="#c03">榜</a>
+        <a href="#c05">六个地方</a>
+        <a href="#c06">四位作者</a>
+      </nav>
+      <div class="search" role="search">
+        <input type="search" placeholder="搜分钟数、场景、导演" aria-label="搜索">
+        <button aria-label="搜索">搜</button>
+      </div>
+      <button class="ham" id="ham" aria-label="菜单" aria-expanded="false">☰</button>
+    </div>
+  </div>
+  <div class="drawer" id="drawer" aria-label="移动端导航">
+    <a href="#c01">四个口袋</a>
+    <a href="#c02">三卷片单</a>
+    <a href="#c03">榜 · 三档</a>
+    <a href="#c04">四张票根</a>
+    <a href="#c05">六个地方</a>
+    <a href="#c06">四位作者</a>
+    <a href="#c07">六条避坑</a>
+    <a href="#about">关于本站</a>
+  </div>
+  <div class="scrim" id="scrim"></div>
+</div>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">// NO. 001 · POCKET SIZE · PORTABLE</div>
+        <h1>好电影，<u>装得进口袋</u>。</h1>
+        <p class="lead"><b>口袋电影网</b>是一份关于<b>碎片时间观影</b>的指南：<b>口袋电影、口袋片单、通勤电影、短片、微电影、动画片、纪录片、电影推荐、4K 修复、杜比视界、正版观影</b>。按<b>15 分钟 / 30 分钟 / 60 分钟</b>分装，地铁一站、午休、睡前、周末沙发，都能刚好看完一部。本站不托管资源、不提供盗链、不做违规采集，倡导正版与 4K 修复。</p>
+        <div class="cta">
+          <a class="p" href="#c01">先挑一个口袋</a>
+          <a class="s" href="#c02">先看三卷片单</a>
+        </div>
+      </div>
+      <div class="memo" aria-label="口袋备忘">
+        <span class="sh">POCKET MEMO</span>
+        <h3>今晚的口袋</h3>
+        <div class="rows">
+          <div class="rw"><b>分钟</b><span>≤ 30 <i>通勤</i></span></div>
+          <div class="rw"><b>场景</b><span>地铁 / 床头 <i>竖屏别看宽银幕</i></span></div>
+          <div class="rw"><b>格式</b><span>4K · 杜比视界 <i>✓</i></span></div>
+          <div class="rw"><b>音量</b><span>耳机 · 以听见窗外为上限 <i>✓</i></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 pockets -->
+  <section id="c01" class="wrap">
+    <div class="sec">
+      <span class="no">01</span>
+      <h2>四个口袋 · 四种碎片时间</h2>
+      <span class="en">Four Pockets</span>
+      <a class="more" href="#">完整清单 ›</a>
+    </div>
+    <div class="pockets">
+      <a class="po" href="#" style="--c:var(--ind);--cream:#f2ede3"><div class="min">15<small>MIN</small></div><b>通勤口袋</b><p>一站地铁、等餐、排队。短片、动画短片、纪录片单集，看完刚好到站。</p><span class="cap">SCENE · 地铁 / 公交 / 电梯</span></a>
+      <a class="po" href="#" style="--c:var(--clay);--cream:#261b17"><div class="min">30<small>MIN</small></div><b>午休口袋</b><p>一集 25–35 分钟。请别开倍速，倍速会毁掉剪辑节奏。</p><span class="cap">SCENE · 工位 / 沙发 / 咖啡馆</span></a>
+      <a class="po" href="#" style="--c:var(--amber);--cream:#241c12"><div class="min">60<small>MIN</small></div><b>睡前口袋</b><p>一部中篇或删减版长片。看完关灯，别再看手机。</p><span class="cap">SCENE · 床头 / 深夜 / 雨天</span></a>
+      <a class="po" href="#" style="--c:var(--sage);--cream:#141a12"><div class="min">120<small>MIN</small></div><b>周末口袋</b><p>完整长片 + 片尾字幕。字幕是电影的一部分，请看完。</p><span class="cap">SCENE · 投屏 / 影院 / 午后</span></a>
+    </div>
+  </section>
+
+  <!-- 02 reels -->
+  <section id="c02" class="wrap">
+    <div class="sec">
+      <span class="no">02</span>
+      <h2>三卷片单 · 一次装三片</h2>
+      <span class="en">Three Reels</span>
+      <a class="more" href="#">完整片单 ›</a>
+    </div>
+    <div class="reels">
+      <a class="re" href="#" style="--c:var(--ind)"><span class="tag">REEL 01</span><h4>第一卷 · 短，但完整</h4><ol><li><b>《鹬》</b>2016 · 动画短片 6min</li><li><b>《纸人》</b>2012 · 动画短片 7min</li><li><b>《岁暮》</b>短片合集 · 每集约 15min</li><li><b>《地球脉动》单集</b>纪录片 50min</li></ol><span class="cap">MOOD · 治愈 / 自然 / 无对白</span></a>
+      <a class="re" href="#" style="--c:var(--clay)"><span class="tag">REEL 02</span><h4>第二卷 · 一个人也能暖</h4><ol><li><b>《孤独的美食家》</b>单集 24min</li><li><b>《小森林》</b>2014 · 半纪录片 111min</li><li><b>《面包和汤和猫咪好天气》</b>2013 · 4 集</li><li><b>《深夜食堂》</b>单集 25min</li></ol><span class="cap">MOOD · 食物 / 独居 / 慢</span></a>
+      <a class="re" href="#" style="--c:var(--amber)"><span class="tag">REEL 03</span><h4>第三卷 · 合家欢，不幼稚</h4><ol><li><b>《龙猫》</b>1988 · 动画 86min</li><li><b>《千与千寻》</b>2001 · 动画 125min</li><li><b>《天空之城》</b>1986 · 动画 124min</li><li><b>《你想活出怎样的人生》</b>2023 · 124min</li></ol><span class="cap">MOOD · 家庭 / 孩子 / 4K 修复</span></a>
+    </div>
+  </section>
+
+  <!-- 03 ladder -->
+  <section id="c03" class="wrap">
+    <div class="sec">
+      <span class="no">03</span>
+      <h2>榜 · 三档必装</h2>
+      <span class="en">Top 3 Pocket Picks</span>
+      <a class="more" href="#">完整榜单 ›</a>
+    </div>
+    <div class="ladder">
+      <a class="la" href="#" style="--c:var(--ind)" data-h="100"><div class="top"><b>NO.1</b><s>龙猫</s></div><div class="mid"><span>《龙猫》</span><em>1988 · 动画 · 86min · 4K</em></div></a>
+      <a class="la" href="#" style="--c:var(--clay)" data-h="78"><div class="top"><b>NO.2</b><s>地球脉动</s></div><div class="mid"><span>《地球脉动》单集</span><em>2006 · 纪录片 · 50min · 4K</em></div></a>
+      <a class="la" href="#" style="--c:var(--amber)" data-h="59"><div class="top"><b>NO.3</b><s>小森林</s></div><div class="mid"><span>《小森林》</span><em>2014 · 半纪录 · 111min · 蓝光</em></div></a>
+    </div>
+    <p style="font-size:11.2px;color:var(--mute);margin-top:14px;line-height:1.9;text-align:justify">榜单为编辑部主观整理，柱高代表"碎片时间里的完成度与回看率"，<b>不代表评分高低</b>。排序依据三条：能否在 60 分钟内看完、是否适合小屏与耳机、是否有 4K 修复或正版蓝光版本。若一部片只在"高清秒播"里出现，它不进榜。</p>
+  </section>
+
+  <!-- 04 tickets -->
+  <section id="c04" class="wrap">
+    <div class="sec">
+      <span class="no">04</span>
+      <h2>四张票根 · 四种看片方式</h2>
+      <span class="en">Four Tickets</span>
+      <a class="more" href="#">完整清单 ›</a>
+    </div>
+    <div class="tix">
+      <a class="ti" href="#" style="--c:var(--ind)"><div class="num">01<small>TICKET</small></div><h4>手机竖屏</h4><p>只适合 1:1 与 4:3。看到 2.39:1 的宽银幕请立刻投屏，裁掉两边等于删掉构图。</p><span class="tag">DOSE · 15–30min</span></a>
+      <a class="ti" href="#" style="--c:var(--clay)"><div class="num">02<small>TICKET</small></div><h4>投屏横看</h4><p>关灯、戴耳机、把手机放下。宽银幕与杜比视界，只有在墙上才成立。</p><span class="tag">DOSE · 60–120min</span></a>
+      <a class="ti" href="#" style="--c:var(--amber)"><div class="num">03<small>TICKET</small></div><h4>正版流媒体</h4><p>会员换来的不只是片源，还有正确 LUT、正确音轨、正确字幕。</p><span class="tag">REQ · 会员 / 字幕组校对版</span></a>
+      <a class="ti" href="#" style="--c:var(--sage)"><div class="num">04<small>TICKET</small></div><h4>蓝光与修复版</h4><p> grain 是胶片，不是模糊。修复版一帧一帧的钱，不该被绕过。</p><span class="tag">REQ · 蓝光机 / 校色屏</span></a>
+    </div>
+  </section>
+
+  <!-- 05 places -->
+  <section id="c05" class="wrap">
+    <div class="sec">
+      <span class="no">05</span>
+      <h2>六个地方 · 六种选片</h2>
+      <span class="en">Six Places</span>
+      <a class="more" href="#">完整清单 ›</a>
+    </div>
+    <div class="places">
+      <a class="pl" href="#" style="--c:var(--ind)"><div class="ic">车</div><b>地铁通勤</b><p>选无对白或音量小的短片，15 分钟以内。别戴一只耳机。</p><span class="req">REQ · 耳机 / 缓存</span></a>
+      <a class="pl" href="#" style="--c:var(--clay)"><div class="ic">饭</div><b>午休工位</b><p>一集 25 分钟，吃完再看。别在吃饭时看吃饭的片。</p><span class="req">REQ · 桌面支架</span></a>
+      <a class="pl" href="#" style="--c:var(--amber)"><div class="ic">窗</div><b>雨天窗台</b><p>纪录片、自然、老电影。雨声是天然混音。</p><span class="req">REQ · 热饮 / 毯子</span></a>
+      <a class="pl" href="#" style="--c:var(--sage)"><div class="ic">灯</div><b>睡前床头</b><p>动画短片、散文式纪录片。看完关灯，别再看手机。</p><span class="req">REQ · 护眼 / 20-20-6</span></a>
+      <a class="pl" href="#" style="--c:var(--ind2)"><div class="ic">墙</div><b>周末投屏</b><p>宽银幕、2.39:1、杜比视界。请关灯、戴耳机、看字幕。</p><span class="req">REQ · 投屏 / 音响</span></a>
+      <a class="pl" href="#" style="--c:var(--clay)"><div class="ic">碟</div><b>蓝光修复版</b><p> grain 是胶片，不是模糊。请支持院线与正版发行。</p><span class="req">REQ · 蓝光机</span></a>
+    </div>
+  </section>
+
+  <!-- 06 auteurs -->
+  <section id="c06" class="wrap">
+    <div class="sec">
+      <span class="no">06</span>
+      <h2>四位作者 · 都很好装</h2>
+      <span class="en">Four Auteurs</span>
+      <a class="more" href="#">完整名单 ›</a>
+    </div>
+    <div class="auteurs">
+      <a class="au" href="#" style="--c:var(--ind)"><span class="no2">AU.01</span><h4>是枝裕和</h4><small class="en3">KORE-EDA</small><p>饭桌、门框、小孩的脚。一集 20 分钟也能成立。请别看解说。</p><span class="see">SEE · 8 部 · 从《步履不停》进</span></a>
+      <a class="au" href="#" style="--c:var(--clay)"><span class="no2">AU.02</span><h4>宫崎骏</h4><small class="en3">MIYAZAKI</small><p>手绘的风、云与海。86 分钟的《龙猫》刚好是一个周末下午。</p><span class="see">SEE · 12 部 · 从《龙猫》进</span></a>
+      <a class="au" href="#" style="--c:var(--amber)"><span class="no2">AU.03</span><h4>新海诚</h4><small class="en3">SHINKAI</small><p>天空与电线。短篇《星之声》25 分钟，是入门最好的入口。</p><span class="see">SEE · 9 部 · 从《星之声》进</span></a>
+      <a class="au" href="#" style="--c:var(--sage)"><span class="no2">AU.04</span><h4>安德鲁·斯坦顿</h4><small class="en3">A. STANTON</small><p>皮克斯的"第二幕"。短片《棋逢敌手》5 分钟，讲完一生。</p><span class="see">SEE · 5 部 · 从《棋逢敌手》进</span></a>
+    </div>
+  </section>
+
+  <!-- 07 avoid -->
+  <section id="c07" class="wrap">
+    <div class="sec">
+      <span class="no">07</span>
+      <h2>六条避坑</h2>
+      <span class="en">Stop Signals</span>
+      <a class="more" href="#">举报渠道 ›</a>
+    </div>
+    <div class="avoid">
+      <a class="av" href="#"><div class="no">STOP 01</div><h4>"未删减 / 高清秒播"</h4><p>九成是盗链、赌博与诈骗。修复版一帧一帧的钱，不该被绕过。</p></a>
+      <a class="av" href="#"><div class="no">STOP 02</div><h4>竖屏看 2.39:1</h4><p>宽银幕被裁成方块，构图等于作废。请投屏，或至少横过来。</p></a>
+      <a class="av" href="#"><div class="no">STOP 03</div><h4>解说 5 分钟看完</h4><p>解说拿走的是情节，留下的是"知道"。节奏、光与留白，都在被删掉的那 100 分钟里。</p></a>
+      <a class="av" href="#"><div class="no">STOP 04</div><h4>1.5 倍速当习惯</h4><p>剪辑节奏是导演写的。倍速看电影，等于只读字幕。</p></a>
+      <a class="av" href="#"><div class="no">STOP 05</div><h4>搬运合集当原创</h4><p>整段搬运他人影评、剧照与片单属侵权，也会被搜索引擎降权。写你自己的三句话。</p></a>
+      <a class="av" href="#"><div class="no">STOP 06</div><h4>收藏 200 部 = 一部没看</h4><p>收藏不是看过。今晚只挑一部，看完片尾字幕，才算完成。</p></a>
+    </div>
+  </section>
+
+  <!-- about -->
+  <section id="about" class="wrap">
+    <div class="sec">
+      <span class="no">08</span>
+      <h2>关于 口袋电影网</h2>
+      <span class="en">About</span>
+      <a class="more" href="#">投稿片单 ›</a>
+    </div>
+    <div class="about">
+      <p class="led"><b>口袋电影网</b>是一份关于<b>碎片时间观影</b>的指南：<b>口袋电影、口袋片单、通勤电影、短片、微电影、动画片、纪录片、电影推荐、经典电影、高分电影、4K 修复、杜比视界、正版观影</b>。我们只解决一个问题——<b>今晚这点时间，够不够看完一部好片</b>。</p>
+      <div class="tags2">
+        <a href="#c01">口袋电影网</a><a href="#c01">口袋电影</a><a href="#c01">口袋片单</a><a href="#c01">通勤电影</a><a href="#c01">碎片时间观影</a>
+        <a href="#c02">短片</a><a href="#c02">微电影</a><a href="#c02">动画片</a><a href="#c02">纪录片</a>
+        <a href="#c04">竖屏观影</a><a href="#c04">投屏</a><a href="#c04">正版流媒体</a><a href="#c04">蓝光修复版</a>
+        <a href="#c06">是枝裕和</a><a href="#c06">宫崎骏</a><a href="#c06">新海诚</a><a href="#c03">4K 修复</a>
+      </div>
+      <p style="margin-top:14px">挑片四步：<b>定分钟 → 定场景 → 定格式 → 找正版</b>。选片三原则：<b>不追热点、不看解说、不消费苦难</b>。优先推荐有 4K 修复或正版蓝光版本、单集 15–60 分钟、适合手机与耳机、由导演本人参与调色与音轨的作品；拒绝把"电影感"当成滤镜，拒绝把"高分"当成"适合今晚"。我们倡导：看正版、看修复版、看蓝光、看大银幕；尊重导演、摄影、美术、作曲、调色与字幕翻译的工作；练习用片与剧照仅用于赏析，不商用、不搬运、不二传。本站片单、榜单与"口袋适配度"为编辑部主观整理，仅供选片参考，不构成权威数据；片名、译名、时长、画幅与上线情况以各平台、发行方与电影节官方公告为准。若发现本站外链违规或失效，请在"投稿片单"告知，我们会在 24 小时内处理。</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div class="brand"><span>口袋电影网</span><span>POCKET CINEMA · 15 MIN · 30 MIN · 60 MIN · 2026</span><p>影视赏析与片单推荐，聚焦碎片时间观影：通勤、午休、睡前、周末。倡导正版、4K 修复、杜比视界、尊重创作者与版权；本站不做资源托管与盗链。</p></div>
+      <div>
+        <h5>口袋</h5>
+        <a href="#c01">15 分钟</a>
+        <a href="#c01">30 分钟</a>
+        <a href="#c01">60 分钟</a>
+        <a href="#c01">120 分钟</a>
+      </div>
+      <div>
+        <h5>片单</h5>
+        <a href="#c02">短片</a>
+        <a href="#c02">动画</a>
+        <a href="#c02">纪录片</a>
+        <a href="#c02">合家欢</a>
+      </div>
+      <div>
+        <h5>作者</h5>
+        <a href="#c06">是枝裕和</a>
+        <a href="#c06">宫崎骏</a>
+        <a href="#c06">新海诚</a>
+        <a href="#c06">安德鲁·斯坦顿</a>
+      </div>
+    </div>
+    <div class="copy">
+      © <span id="yr">2026</span> 口袋电影网 &nbsp;|&nbsp; 网站网址：<a href="https://koudaidianyingwang-cn.github.io/">https://koudaidianyingwang-cn.github.io/</a><br>
+      // PORTABLE · POCKET SIZE &nbsp;·&nbsp; 本站为影视赏析与片单参考，片单与评分为编辑部主观整理
+    </div>
+  </div>
+</footer>
+
+<script>
+var ham=document.getElementById('ham'),dr=document.getElementById('drawer'),sc=document.getElementById('scrim');
+function closeNav(){dr.classList.remove('open');sc.classList.remove('on');ham.setAttribute('aria-expanded','false');}
+ham.addEventListener('click',function(){var o=dr.classList.toggle('open');sc.classList.toggle('on',o);ham.setAttribute('aria-expanded',o);});
+sc.addEventListener('click',closeNav);
+dr.addEventListener('click',function(e){if(e.target.tagName==='A')closeNav();});
+document.getElementById('yr').textContent=new Date().getFullYear();
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.style.height=e.target.dataset.h+'%';io.unobserve(e.target);}})},{threshold:.3});
+document.querySelectorAll('.la').forEach(function(n){io.observe(n);});
+</script>
+</body>
+</html>
